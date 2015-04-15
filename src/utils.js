@@ -391,10 +391,10 @@ module.exports = (function () {
                 if (!body) {
                     error = "Empty response";
                 }
-                if (body.indexOf('<rsp stat="fail">') > -1) {
+                if (!error && body.indexOf('<rsp stat="fail">') > -1) {
                     error = body.match(/msg="([^"]+)"/)[1];
                 }
-                if (body.indexOf('rsp stat="ok"') > -1) {
+                if (!error && body.indexOf('rsp stat="ok"') > -1) {
                     data = parseInt(body.split("<photoid>")[1].split("</photoid>")[0], 10);
                 }
                 if (!data && !error) {
